@@ -108,6 +108,21 @@ local plugins = {
 			}
 		end,
 	},
+  {
+    "NvChad/nvterm",
+    opts = {
+      terminals = {
+        type_opts = {
+          float = {
+            row = 0.05,
+            col = 0.025,
+            width = 0.95,
+            height = 0.9,
+          },
+        },
+      },
+    },
+  },
 }
 
 return plugins
