@@ -1,0 +1,37 @@
+version: "3"
+services:
+  django:
+    command: >
+      sh -c "apt update -y && apt install -y gdb && pip install --upgrade debugpy && echo \"running python debugpy\" && python -m debugpy --listen 0.0.0.0:5678 --configure-subProcess true manage.py runserver 0.0.0.0:8000"
+      # - "pip"
+      # - "install"
+      # - "debugpy"
+      # - "&&"
+      # - "python"
+      # - "-m"
+      # - "debugpy"
+      # - "--listedn"
+      # - "5678"
+      # - "--configure-subProcess"
+      # - "true"
+      # - "manage.py"
+      # - "runserver"
+      # - "0.0.0.0:8000"
+    environment:
+      PYDEVD_LOAD_VALUES_ASYNC: "True"
+      # PYTHONPATH: "/opt/project:/opt/.pycharm_helpers/pycharm_matplotlib_backend:/opt/.pycharm_helpers/pycharm_display:/opt/.pycharm_helpers/third_party/thriftpy:/opt/.pycharm_helpers/pydev:/home/embercraze/.cache/JetBrains/PyCharm2023.2/cythonExtensions:/opt/project"
+      DJANGO_SETTINGS_MODULE: "config.settings.local"
+      PYTHONUNBUFFERED: "1"
+      PYTHONIOENCODING: "UTF-8"
+      IPYTHONENABLE: "True"
+      IDE_PROJECT_ROOTS: "/opt/project"
+      PYTHONDONTWRITEBYTECODE: "1"
+    ports:
+    - "0.0.0.0:5678:5678"
+    stdin_open: true
+    volumes:
+    - "/home/embercraze/gigapay_dev/gigapay:/opt/project:rw"
+    # - "pycharm_helpers_PY-232.9921.89:/opt/.pycharm_helpers"
+    working_dir: "/opt/project"
+# volumes:
+  # pycharm_helpers_PY-232.9921.89: {}
