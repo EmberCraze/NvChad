@@ -42,6 +42,8 @@ local plugins = {
         "black",
         "flake8",
         "sourcery",
+        "gopls",
+        "gofumpt",
       },
     },
   },
