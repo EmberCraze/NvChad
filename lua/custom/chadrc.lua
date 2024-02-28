@@ -4,7 +4,7 @@ opt.relativenumber = true
 local M = {}
 M.ui = {
   theme = "gruvbox",
-  theme_toggle = { "gruvbox_light", "gruvbox" },
+  theme_toggle = { "everforest_light", "gruvbox" },
 }
 M.plugins = "custom.plugins"
 M.mappings = require "custom.mappings"
