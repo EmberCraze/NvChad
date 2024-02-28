@@ -8,7 +8,6 @@ local servers = {
   "clangd",
   -- "jedi_language_server",
   "tsserver",
-  "sourcery",
   "pyright",
   "gopls",
 }

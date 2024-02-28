@@ -41,7 +41,6 @@ local plugins = {
         "pyright",
         "black",
         "flake8",
-        "sourcery",
         "gopls",
         "gofumpt",
       },
@@ -90,60 +89,45 @@ local plugins = {
     },
   },
   {
-    "glacambre/firenvim",
-
-    -- Lazy load firenvim
-    -- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
-    lazy = not vim.g.started_by_firenvim,
-    build = function()
-      vim.fn["firenvim#install"](0)
-    end,
     config = function()
-      -- For auto save to buffer
-      vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI" }, {
-        callback = function(e)
-          if vim.g.timer_started == true then
-            return
-          end
-          vim.g.timer_started = true
-          vim.fn.timer_start(10000, function()
-            vim.g.timer_started = false
-            vim.cmd "write"
-          end)
-        end,
-      })
-
-      vim.g.firenvim_config = {
-        localSettings = {
-          [".*"] = {
-            takeover = "never",
-            cmdline = "firenvim",
-          },
-        },
-      }
     end,
-  },
-  {
-    "nvim-neotest/neotest",
-    lazy = false,
     dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "antoinemadec/FixCursorHold.nvim",
-      "vim-test/vim-test",
-      "nvim-neotest/neotest-vim-test",
     },
-    config = function()
-      require("neotest").setup {
-        adapters = {
-          require "neotest-vim-test" {
-            allow_file_types = { "python" },
-          },
-        },
-      }
-      require("core.utils").load_mappings "neotest"
-    end,
   },
+  -- {
+  --   "glacambre/firenvim",
+  --
+  --   -- Lazy load firenvim
+  --   -- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
+  --   lazy = not vim.g.started_by_firenvim,
+  --   build = function()
+  --     vim.fn["firenvim#install"](0)
+  --   end,
+  --   config = function()
+  --     -- For auto save to buffer
+  --     vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI" }, {
+  --       callback = function(e)
+  --         if vim.g.timer_started == true then
+  --           return
+  --         end
+  --         vim.g.timer_started = true
+  --         vim.fn.timer_start(10000, function()
+  --           vim.g.timer_started = false
+  --           vim.cmd "write"
+  --         end)
+  --       end,
+  --     })
+  --
+  --     vim.g.firenvim_config = {
+  --       localSettings = {
+  --         [".*"] = {
+  --           takeover = "never",
+  --           cmdline = "firenvim",
+  --         },
+  --       },
+  --     }
+  --   end,
+  -- },
   {
     "vim-test/vim-test",
     lazy = false,
@@ -164,9 +148,6 @@ local plugins = {
     "mfussenegger/nvim-dap",
     lazy = false,
     dependencies = {
-      -- {
-      --   "mfussenegger/nvim-dap-python",
-      -- },
       {
 
         "rcarriga/nvim-dap-ui",
@@ -179,34 +160,6 @@ local plugins = {
       require "custom.configs.nvim-dap"
     end,
   },
-  -- {
-  --   "schrieveslaach/sonarlint.nvim",
-  --   url = "https://gitlab.com/schrieveslaach/sonarlint.nvim",
-  --   event = "BufEnter *.py",
-  --   config = function()
-  --     require("sonarlint").setup {
-  --       server = {
-  --         cmd = {
-  --           "sonarlint-language-server",
-  --           -- Ensure that sonarlint-language-server uses stdio channel
-  --           "-stdio",
-  --           "-analyzers",
-  --           -- paths to the analyzers you need, using those for python and java in this example
-  --           vim.fn.expand "$MASON/share/sonarlint-analyzers/sonarpython.jar",
-  --           vim.fn.expand "$MASON/share/sonarlint-analyzers/sonarcfamily.jar",
-  --           vim.fn.expand "$MASON/share/sonarlint-analyzers/sonarjava.jar",
-  --         },
-  --       },
-  --       filetypes = {
-  --         -- Tested and working
-  --         "python",
-  --         -- "cpp",
-  --         -- Requires nvim-jdtls, otherwise an error message will be printed
-  --         -- "java",
-  --       },
-  --     }
-  --   end,
-  -- },
   {
     "NvChad/nvterm",
     opts = {
