@@ -11,6 +11,8 @@ local plugins = {
         "tsx",
         "json",
         "python",
+        "markdown",
+        "markdown_inline",
       },
     },
   },
@@ -89,10 +91,15 @@ local plugins = {
     },
   },
   {
+    "nvimdev/lspsaga.nvim",
     config = function()
+      require("lspsaga").setup {}
     end,
     dependencies = {
+      "nvim-treesitter/nvim-treesitter", -- optional
+      "nvim-tree/nvim-web-devicons", -- optional
     },
+    event = "LspAttach",
   },
   -- {
   --   "glacambre/firenvim",
