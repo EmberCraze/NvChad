@@ -5,7 +5,7 @@ local lint = null_ls.builtins.diagnostics
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 local sources = {
-  -- formatting.prettier,
+  formatting.prettier,
   formatting.stylua,
   formatting.black,
   formatting.gofumpt,
