@@ -21,7 +21,7 @@ local plugins = {
     "neovim/nvim-lspconfig",
 
     dependencies = {
-      "jose-elias-alvarez/null-ls.nvim",
+      "nvimtools/none-ls.nvim",
       config = function()
         require "custom.configs.null-ls"
       end,
@@ -52,13 +52,13 @@ local plugins = {
     "hrsh7th/nvim-cmp",
     opts = {
       sources = {
+        { name = "cmp_tabnine" },
+        { name = "codeium" },
         { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "buffer" },
         { name = "nvim_lua" },
         { name = "path" },
-        { name = "cmp_tabnine" },
-        -- { name = "codeium" },
       },
     },
 
@@ -158,6 +158,9 @@ local plugins = {
       {
 
         "rcarriga/nvim-dap-ui",
+        dependencies = {
+          { "nvim-neotest/nvim-nio" },
+        },
         config = function()
           require("dapui").setup {}
         end,

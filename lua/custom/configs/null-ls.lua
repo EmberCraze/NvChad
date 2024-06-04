@@ -9,8 +9,6 @@ local sources = {
   formatting.stylua,
   formatting.black,
   formatting.gofumpt,
-
-  lint.shellcheck,
 }
 
 null_ls.setup {
