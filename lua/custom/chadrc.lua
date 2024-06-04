@@ -3,7 +3,7 @@ opt.relativenumber = true
 ---@type ChadrcConfig
 local M = {}
 M.ui = {
-  theme = "everforest_light",
+  theme = "gruvbox",
   theme_toggle = { "everforest_light", "gruvbox" },
 }
 M.plugins = "custom.plugins"
