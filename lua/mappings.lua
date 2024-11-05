@@ -1,12 +1,22 @@
-local M = {}
+require "nvchad.mappings"
 
+-- add yours here
+
+local map = vim.keymap.set
+
+map("n", ";", ":", { desc = "CMD enter command mode" })
+map("i", "jk", "<ESC>")
+
+-- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+
+local M = {}
 M.general = {
   n = {
     ["<C-h>"] = { "<cmd> TmuxNavigateLeft<CR>", "window left" },
     ["<C-l>"] = { "<cmd> TmuxNavigateRight<CR>", "window right" },
     ["<C-j>"] = { "<cmd> TmuxNavigateDown<CR>", "window down" },
     ["<C-k>"] = { "<cmd> TmuxNavigateUp<CR>", "window up" },
-    ["<,tc>"] = { " ", "+Custom tests" },
+    -- ["<,tc>"] = { " ", "+Custom tests" },
     ["<,tch"] = {
       function()
         -- setup volume with scripts
@@ -16,14 +26,7 @@ M.general = {
       end,
       "Test here",
     },
-  },
-}
-
-M.disabled = {
-  n = {
-    ["<leader>h"] = "",
-    ["<leader>q"] = "",
-    ["<C-n>"] = "",
+    -- ["K"] = { "<cmd> Lspsaga hover_doc <CR>" },
   },
 }
 
@@ -51,21 +54,43 @@ M.tabufline = {
     },
   },
 }
-M.vim_test = {
-  plugin = true,
+
+M.lspsaga = {
   n = {
-    [",t"] = { " ", "+Testing" },
+    ["<leader>lo"] = { "<cmd> Lspsaga outline <CR>", "Open outline" },
+  },
+}
+
+M.vim_test = {
+  n = {
+    -- [",t"] = { " ", "+Testing" },
     [",ta"] = { "<cmd> TestSuit <CR>", "Run all tests" },
-    [",th"] = { "<cmd> TestNearest <CR>", "Test here" },
-    [",tc"] = { "<cmd> TestClass <CR>", "Test class" },
+    [",th"] = {
+      function()
+        vim.g["test#python#djangotest#executable"] = "bash " .. vim.fn.getcwd() .. "/.nvim/start_test.sh"
+        vim.api.nvim_command "TestNearest"
+      end,
+      "Test here",
+    },
+    -- [",tc"] = { "<cmd> TestClass <CR>", "Test class" },
     [",tf"] = { "<cmd> TestClass <CR>", "Test file" },
+    -- [",tc"] = { " ", "+Testing Coverage" },
+    [",tch"] = {
+      function()
+        vim.g["test#python#djangotest#executable"] = "COVERAGE_ENABLED=true "
+          .. "bash "
+          .. vim.fn.getcwd()
+          .. "/.nvim/start_test.sh"
+        vim.api.nvim_command "TestNearest"
+      end,
+      "Test here with coverage",
+    },
   },
 }
 
 M.neotest = {
-  plugin = true,
   n = {
-    [",tn"] = { " ", "+Neotest" },
+    -- [",tn"] = { " ", "+Neotest" },
     -- [",ta"] = { "<cmd> TestSuit <CR>", "Run all tests"},
     [",tnh"] = {
       function()
@@ -84,10 +109,18 @@ M.neotest = {
   },
 }
 
-M.nvimdap = {
-  -- plugin = true,
+M.diffview = {
   n = {
-    [",d"] = { " ", "+Debug" },
+    ["<leader>gdo"] = { "<cmd> DiffviewOpen <CR>", "Diffview open" },
+    ["<leader>gdc"] = { "<cmd> DiffviewClose <CR>", "Diffview close" },
+    ["<leader>gdh"] = { "<cmd> DiffviewFileHistory <CR>", "Diffview history" },
+    ["<leader>gdf"] = { "<cmd> DiffviewFileHistory % <CR>", "Diffview current file history" },
+  },
+}
+
+M.nvimdap = {
+  n = {
+    -- [",d"] = { " ", "+Debug" },
     [",db"] = {
       function()
         require("dap").toggle_breakpoint()
@@ -112,7 +145,7 @@ M.nvimdap = {
       end,
       "Step over",
     },
-    [",ds"] = { " ", "+Steps" },
+    -- [",ds"] = { " ", "+Steps" },
     [",dsi"] = {
       function()
         require("dap").step_into()
@@ -132,7 +165,7 @@ M.nvimdap = {
       end,
       "Terminate",
     },
-    [",dt"] = { "", "+Tests" },
+    -- [",dt"] = { "", "+Tests" },
     [",dta"] = {
       function()
         vim.g["test#python#djangotest#executable"] = "bash " .. vim.fn.getcwd() .. "/.nvim/start_debug_test.sh"
@@ -151,4 +184,39 @@ M.nvimdap = {
   },
 }
 
-return M
+M.hover = {
+  n = {
+    ["K"] = {
+      function()
+        require("hover").hover()
+      end,
+      "Hover info",
+    },
+    ["<C-p>"] = {
+      function()
+        require("hover").hover_switch "previous"
+      end,
+      "hover.nvim (previous source)",
+    },
+    ["<C-n>"] = {
+      function()
+        require("hover").hover_switch "next"
+      end,
+      "hover.nvim (next source)",
+    },
+  },
+}
+
+-- for mode, maps in pairs(mappings) do
+--   for key, val in pairs(maps) do
+--     map(mode, key, val[1], val[2])
+--   end
+-- end
+
+for _, category in pairs(M) do
+  for mode, mode_maps in pairs(category) do
+    for key, mapping in pairs(mode_maps) do
+      map(mode, key, mapping[1], { desc = mapping[2] })
+    end
+  end
+end

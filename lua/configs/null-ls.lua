@@ -9,6 +9,7 @@ local sources = {
   formatting.stylua,
   formatting.black,
   formatting.gofumpt,
+  -- formatting.ruff,
 }
 
 null_ls.setup {

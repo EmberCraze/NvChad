@@ -1,17 +1,19 @@
-local on_attach = require("plugins.configs.lspconfig").on_attach
-local capabilities = require("plugins.configs.lspconfig").capabilities
+local on_attach = require("nvchad.configs.lspconfig").on_attach
+local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
 local servers = {
   "html",
   "cssls",
   "clangd",
-  -- "jedi_language_server",
-  "tsserver",
+  "ts_ls",
   "pyright",
   "gopls",
   "bashls",
+  -- "ruff",
+  "lua_ls",
 }
+-- lspconfig["ruff"]
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
