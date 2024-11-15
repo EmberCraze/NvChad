@@ -233,6 +233,20 @@ M.codeium = {
   },
 }
 
+M.trouble = {
+  n = {
+    ["<leader>xx"] = { "<cmd>Trouble diagnostics toggle<cr>", "Diagnostics" },
+    ["<leader>xX"] = { "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", "Buffer Diagnostics (Trouble)" },
+    ["<leader>cs"] = { "<cmd>Trouble symbols toggle focus=false<cr>", "Symbols (Trouble)" },
+    ["<leader>cl"] = {
+      "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+      "LSP Definitions / references / ... (Trouble)",
+    },
+    ["<leader>xL"] = { "<cmd>Trouble loclist toggle<cr>", "Location List (Trouble)" },
+    ["<leader>xQ"] = { "<cmd>Trouble qflist toggle<cr>", "Quickfix List (Trouble)" },
+  },
+}
+
 -- for mode, maps in pairs(mappings) do
 --   for key, val in pairs(maps) do
 --     map(mode, key, val[1], val[2])
