@@ -206,6 +206,32 @@ M.hover = {
     },
   },
 }
+M.codeium = {
+  i = {
+    -- ["<M-.>"] = {
+    --   function()
+    --     require("codeium.virtual_text").accept()
+    --   end,
+    --   "Code accept",
+    -- },
+    -- ["<M-,>"] = {
+    --   function()
+    --     require("codeium.virtual_text").complete()
+    --   end,
+    --   "Code complete",
+    -- },
+  },
+  n = {
+
+    -- next command
+    ["<leader>ccn"] = {
+      function()
+        require("codeium.virtual_text").cycle_or_complete()
+      end,
+      "Code next",
+    },
+  },
+}
 
 -- for mode, maps in pairs(mappings) do
 --   for key, val in pairs(maps) do
