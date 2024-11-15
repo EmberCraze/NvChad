@@ -319,4 +319,13 @@ return {
       require "configs.hover"
     end,
   },
+  {
+    "rcarriga/nvim-notify",
+    -- opts = {
+    --   render = "compact",
+    -- },
+    init = function()
+      vim.notify = require "notify"
+    end,
+  },
 }
