@@ -29,16 +29,12 @@ dap.configurations.python = {
 }
 
 local dapui = require "dapui"
-local dap_vtext = require "nvim-dap-virtual-text"
 dap.listeners.after.event_initialized["dapui_config"] = function()
   dapui.open()
-  dap_vtext.enable()
 end
 dap.listeners.before.event_terminated["dapui_config"] = function()
   dapui.close()
-  dap_vtext.disable()
 end
 dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
-  dap_vtext.disable()
 end

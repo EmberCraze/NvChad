@@ -295,13 +295,6 @@ return {
       }
     end,
   },
-  -- {
-  -- },
-
-  {
-    "theHamsta/nvim-dap-virtual-text",
-    dependencies = { "mfussenegger/nvim-dap" },
-  },
   {
     "lewis6991/hover.nvim",
     config = function()
