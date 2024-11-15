@@ -3,7 +3,8 @@ local options = {
     lua = { "stylua" },
     css = { "prettier" },
     html = { "prettier" },
-    python = { "black" },
+    -- python = { "black" },
+    python = { "ruff_format" },
     javascript = { "prettier" },
   },
 
