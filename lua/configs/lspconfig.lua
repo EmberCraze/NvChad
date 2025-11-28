@@ -1,7 +1,6 @@
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
-local lspconfig = require "lspconfig"
 local servers = {
   "html",
   "cssls",
@@ -10,14 +9,14 @@ local servers = {
   "pyright",
   "gopls",
   "bashls",
-  -- "ruff",
   "lua_ls",
+  "ltex_plus",
 }
--- lspconfig["ruff"]
 
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
+  vim.lsp.config(lsp, {
     on_attach = on_attach,
     capabilities = capabilities,
-  }
+  })
+  vim.lsp.enable(lsp)
 end

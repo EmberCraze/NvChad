@@ -93,25 +93,25 @@ return {
       "Exafunction/codeium.nvim",
     },
   },
-  {
-    "Exafunction/codeium.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "hrsh7th/nvim-cmp",
-    },
-    config = function()
-      require("codeium").setup {
-        enable_cmp_source = false,
-        virtual_text = {
-          enabled = true,
-          key_bindings = {
-            -- Accept the current completion.
-            accept = "<M-.>",
-          },
-        },
-      }
-    end,
-  },
+  -- {
+  --   'Exafunction/codeium.nvim',
+  --   dependencies = {
+  --     'nvim-lua/plenary.nvim',
+  --     'hrsh7th/nvim-cmp',
+  --   },
+  --   config = function()
+  --     require('codeium').setup({
+  --       enable_cmp_source = false,
+  --       virtual_text = {
+  --         enabled = true,
+  --         key_bindings = {
+  --           -- Accept the current completion.
+  --           accept = '<M-.>',
+  --         },
+  --       },
+  --     })
+  --   end,
+  -- },
   {
     "nvimdev/lspsaga.nvim",
     config = function()
@@ -127,40 +127,6 @@ return {
     },
     event = "LspAttach",
   },
-  -- {
-  --   "glacambre/firenvim",
-  --
-  --   -- Lazy load firenvim
-  --   -- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
-  --   lazy = not vim.g.started_by_firenvim,
-  --   build = function()
-  --     vim.fn["firenvim#install"](0)
-  --   end,
-  --   config = function()
-  --     -- For auto save to buffer
-  --     vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI" }, {
-  --       callback = function(e)
-  --         if vim.g.timer_started == true then
-  --           return
-  --         end
-  --         vim.g.timer_started = true
-  --         vim.fn.timer_start(10000, function()
-  --           vim.g.timer_started = false
-  --           vim.cmd "write"
-  --         end)
-  --       end,
-  --     })
-  --
-  --     vim.g.firenvim_config = {
-  --       localSettings = {
-  --         [".*"] = {
-  --           takeover = "never",
-  --           cmdline = "firenvim",
-  --         },
-  --       },
-  --     }
-  --   end,
-  -- },
   {
     "vim-test/vim-test",
     lazy = false,
@@ -236,56 +202,9 @@ return {
       { "nvim-tree/nvim-web-devicons", lazy = true },
     },
   },
-  -- {
-  --   "yetone/avante.nvim",
-  --   event = "VeryLazy",
-  --   lazy = false,
-  --   version = false, -- set this if you want to always pull the latest change
-  --   opts = {
-  --     -- add any opts here
-  --   },
-  --   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-  --   build = "make",
-  --   -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
-  --   dependencies = {
-  --     "nvim-treesitter/nvim-treesitter",
-  --     "stevearc/dressing.nvim",
-  --     "nvim-lua/plenary.nvim",
-  --     "MunifTanjim/nui.nvim",
-  --     --- The below dependencies are optional,
-  --     "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-  --     "zbirenbaum/copilot.lua", -- for providers='copilot'
-  --     {
-  --       -- support for image pasting
-  --       "HakonHarnes/img-clip.nvim",
-  --       event = "VeryLazy",
-  --       opts = {
-  --         -- recommended settings
-  --         default = {
-  --           embed_image_as_base64 = false,
-  --           prompt_for_file_name = false,
-  --           drag_and_drop = {
-  --             insert_mode = true,
-  --           },
-  --           -- required for Windows users
-  --           use_absolute_path = true,
-  --         },
-  --       },
-  --     },
-  --     {
-  --       -- Make sure to set this up properly if you have lazy=true
-  --       'MeanderingProgrammer/render-markdown.nvim',
-  --       opts = {
-  --         file_types = { "markdown", "Avante" },
-  --       },
-  --       ft = { "markdown", "Avante" },
-  --     },
-  --   },
-  -- },
   {
     "andythigpen/nvim-coverage",
     dependencies = { "nvim-lua/plenary.nvim" },
-    -- build = "luarocks install lua-xmlreader", -- Optional: needed for PHP when using the cobertura parser
     lazy = false,
     lang = { python = { coverage_file = "./.coverage" } },
     version = "*",
@@ -326,22 +245,21 @@ return {
       require "configs.hover"
     end,
   },
-
-  {
-    "olimorris/codecompanion.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "hrsh7th/nvim-cmp", -- Optional: For using slash commands and variables in the chat buffer
-      "nvim-telescope/telescope.nvim", -- Optional: For using slash commands
-      {
-        "MeanderingProgrammer/render-markdown.nvim",
-        ft = { "markdown", "codecompanion" }, -- Optional: For prettier markdown rendering
-        { "stevearc/dressing.nvim", opts = {} }, -- Optional: Improves `vim.ui.select`
-      },
-      config = true,
-    },
-  },
+  -- {
+  --   'olimorris/codecompanion.nvim',
+  --   dependencies = {
+  --     'nvim-lua/plenary.nvim',
+  --     'nvim-treesitter/nvim-treesitter',
+  --     'hrsh7th/nvim-cmp', -- Optional: For using slash commands and variables in the chat buffer
+  --     'nvim-telescope/telescope.nvim', -- Optional: For using slash commands
+  --     {
+  --       'MeanderingProgrammer/render-markdown.nvim',
+  --       ft = { 'markdown', 'codecompanion' }, -- Optional: For prettier markdown rendering
+  --       { 'stevearc/dressing.nvim', opts = {} }, -- Optional: Improves `vim.ui.select`
+  --     },
+  --     config = true,
+  --   },
+  -- },
   {
     "rcarriga/nvim-notify",
     -- opts = {
@@ -355,5 +273,142 @@ return {
     "folke/trouble.nvim",
     opts = {}, -- for default options, refer to the configuration section for custom setup.
     cmd = "Trouble",
+  },
+  -- {
+  --   'coder/claudecode.nvim',
+  --   dependencies = { 'folke/snacks.nvim' },
+  --   opts = {
+  --     terminal = {
+  --       provider = require('tmux-claude-provider'),
+  --     },
+  --   },
+  --   config = true,
+  --   keys = {
+  --     { '<leader>a', nil, desc = 'AI/Claude Code' },
+  --     { '<leader>ac', '<cmd>ClaudeCode<cr>', desc = 'Toggle Claude' },
+  --     { '<leader>af', '<cmd>ClaudeCodeFocus<cr>', desc = 'Focus Claude' },
+  --     { '<leader>ar', '<cmd>ClaudeCode --resume<cr>', desc = 'Resume Claude' },
+  --     {
+  --       '<leader>aC',
+  --       '<cmd>ClaudeCode --continue<cr>',
+  --       desc = 'Continue Claude',
+  --     },
+  --     { '<leader>ab', '<cmd>ClaudeCodeAdd %<cr>', desc = 'Add current buffer' },
+  --     {
+  --       '<leader>as',
+  --       '<cmd>ClaudeCodeSend<cr>',
+  --       mode = 'v',
+  --       desc = 'Send to Claude',
+  --     },
+  --     {
+  --       '<leader>as',
+  --       '<cmd>ClaudeCodeTreeAdd<cr>',
+  --       desc = 'Add file',
+  --       ft = { 'NvimTree', 'neo-tree', 'oil' },
+  --     },
+  --     -- Diff management
+  --     { '<leader>aa', '<cmd>ClaudeCodeDiffAccept<cr>', desc = 'Accept diff' },
+  --     { '<leader>ad', '<cmd>ClaudeCodeDiffDeny<cr>', desc = 'Deny diff' },
+  --   },
+  -- },
+  -- {
+  --   'NickvanDyke/opencode.nvim',
+  --   dependencies = {
+  --     -- Recommended for better prompt input, and required to use `opencode.nvim`'s embedded terminal — otherwise optional
+  --     { 'folke/snacks.nvim', opts = { input = { enabled = true } } },
+  --   },
+  --   keys = {
+  --     { '<leader>ot', '<cmd>OpencodeToggle<cr>', desc = 'Toggle' },
+  --     { '<leader>oA', '<cmd>OpencodeAsk<cr>', desc = 'Ask' },
+  --   },
+  --   config = function()
+  --     vim.g.opencode_opts = {
+  --       -- Your configuration, if any — see `lua/opencode/config.lua`
+  --     }
+  --
+  --     -- Required for `opts.auto_reload`
+  --     vim.opt.autoread = true
+  --
+  --     -- Recommended keymaps
+  --     -- vim.keymap.set('n', '<leader>ot', function()
+  --     --   require('opencode').toggle()
+  --     -- end, { desc = 'Toggle' })
+  --     -- vim.keymap.set('n', '<leader>oA', function()
+  --     --   require('opencode').ask()
+  --     -- end, { desc = 'Ask' })
+  --     vim.keymap.set('n', '<leader>oa', function()
+  --       require('opencode').ask('@cursor: ')
+  --     end, { desc = 'Ask about this' })
+  --     vim.keymap.set('v', '<leader>oa', function()
+  --       require('opencode').ask('@selection: ')
+  --     end, { desc = 'Ask about selection' })
+  --     vim.keymap.set('n', '<leader>o+', function()
+  --       require('opencode').append_prompt('@buffer')
+  --     end, { desc = 'Add buffer to prompt' })
+  --     vim.keymap.set('v', '<leader>o+', function()
+  --       require('opencode').append_prompt('@selection')
+  --     end, { desc = 'Add selection to prompt' })
+  --     vim.keymap.set('n', '<leader>on', function()
+  --       require('opencode').command('session_new')
+  --     end, { desc = 'New session' })
+  --     vim.keymap.set('n', '<leader>oy', function()
+  --       require('opencode').command('messages_copy')
+  --     end, { desc = 'Copy last response' })
+  --     vim.keymap.set('n', '<S-C-u>', function()
+  --       require('opencode').command('messages_half_page_up')
+  --     end, { desc = 'Messages half page up' })
+  --     vim.keymap.set('n', '<S-C-d>', function()
+  --       require('opencode').command('messages_half_page_down')
+  --     end, { desc = 'Messages half page down' })
+  --     vim.keymap.set({ 'n', 'v' }, '<leader>os', function()
+  --       require('opencode').select()
+  --     end, { desc = 'Select prompt' })
+  --
+  --     -- Example: keymap for custom prompt
+  --     vim.keymap.set('n', '<leader>oe', function()
+  --       require('opencode').prompt('Explain @cursor and its context')
+  --     end, { desc = 'Explain this code' })
+  --   end,
+  -- },
+  {
+    "cousine/opencode-context.nvim",
+    opts = {
+      tmux_target = nil, -- Manual override: "session:window.pane"
+      auto_detect_pane = true, -- Auto-detect opencode pane in current window
+    },
+    keys = {
+      {
+        "<leader>oc",
+        "<cmd>OpencodeSend<cr>",
+        desc = "Send prompt to opencode",
+      },
+      {
+        "<leader>oc",
+        "<cmd>OpencodeSend<cr>",
+        mode = "v",
+        desc = "Send prompt to opencode",
+      },
+      {
+        "<leader>ot",
+        "<cmd>OpencodeSwitchMode<cr>",
+        desc = "Toggle opencode mode",
+      },
+      {
+        "<leader>op",
+        "<cmd>OpencodePrompt<cr>",
+        desc = "Open opencode persistent prompt",
+      },
+    },
+    cmd = { "OpencodeSend", "OpencodeSwitchMode" },
+  },
+  {
+    "supermaven-inc/supermaven-nvim",
+    config = function()
+      require("supermaven-nvim").setup {
+        keymaps = {
+          accept_suggestion = "<M-.>",
+        },
+      }
+    end,
   },
 }
