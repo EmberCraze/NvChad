@@ -11,6 +11,7 @@ local servers = {
   "bashls",
   "lua_ls",
   "ltex_plus",
+  "jsonls",
 }
 
 for _, lsp in ipairs(servers) do
