@@ -31,35 +31,11 @@ return {
   -- In order to modify the `lspconfig` configuration:
   {
     "neovim/nvim-lspconfig",
-
-    -- dependencies = {
-    --   "nvimtools/none-ls.nvim",
-    --   config = function()
-    --     require "configs.null-ls"
-    --   end,
-    -- },
     config = function()
       require "nvchad.configs.lspconfig"
       require "configs.lspconfig"
     end,
   },
-  -- {
-  --   "williamboman/mason.nvim",
-  --   opts = {
-  --     ensure_installed = {
-  --       "lua-language-server",
-  --       "typescript-language-server",
-  --       "html-lsp",
-  --       "prettier",
-  --       "stylua",
-  --       "pyright",
-  --       "black",
-  --       "flake8",
-  --       "gopls",
-  --       "gofumpt",
-  --     },
-  --   },
-  -- },
   {
     "hrsh7th/nvim-cmp",
     opts = {
